@@ -41,7 +41,6 @@
 | EVA_LoyaltyBadge | baseURI + tierMinimums undecided |
 | EVA_NFT | no collection concept (pre-existing) |
 | EVA_OracleBlend | 2 more verified Chainlink feeds (only ETH/USD on record) |
-| EVA_SortitionPanel | VRF (vrf/keyHash/subId) |
 | EVA_Splitter | payees/shares undecided |
 | EVA_ThreatMarket | depends on VerifyJury |
 | EVA_USDThresholds | priceFeed + confidenceSource |
@@ -53,9 +52,9 @@
 **Market-dependent (4):** AdaptiveCurve, EMADampener, PrioritySlot, BondedDepth — need MarketSatellite (`buy/sell/previews`).
 **Dead on EWA_Core (3, fork-proven):** LiquidityDepthEngine, ReserveSolvencyEngine, VolatilitySurfaceEngine — call `sold()/spotPriceUSD8()/curveReserveETH()/lastGoodEthUSD8()`, none exist on the minimal core; `poke()` reverts permanently. Need rebinding to new data sources. **Excluded from EngineHub regs.**
 
-## EXCLUDED (5) / PER-DEAL (1) / DEPLOYED (1)
+## EXCLUDED (6) / PER-DEAL (1) / DEPLOYED (1)
 
-- Excluded: EVA_ReopenAuction (tied to dead breaker), EVA_ResilienceCredits (tied to breaker incidents), EVA_Core (old, breaker bug), EVA_EduInherit (out of token scope), EVA_SimpleToken (TokenFactory covers it)
+- Excluded: EVA_ReopenAuction (tied to dead breaker), EVA_ResilienceCredits (tied to breaker incidents), EVA_Core (old, breaker bug), EVA_EduInherit (out of token scope), EVA_SimpleToken (TokenFactory covers it), **EVA_SortitionPanel (founder decision 2026-10-02: no Chainlink VRF ever — the contract fundamentally needs VRF for random selection; no alternative or workaround by his order)**
 - Per-deal: EVA_Escrow (deploy per deal only)
 - Deployed: EWA_Core `0x0201981D7BFE0E79DEACb0B5eae0F83022Cc18eB`
 
