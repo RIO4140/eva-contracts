@@ -77,7 +77,7 @@ if [ -z "${TREASURY:-}" ]; then echo "FATAL: EVA_Treasury deploy failed"; exit 1
 echo "EVA_Treasury = $TREASURY"
 save_addr TREASURY $TREASURY
 sleep 5
-eq_addr "$(cast call $TREASURY "councilAt(uint256)" 0 --rpc-url $RPC)" "$MULTISIG" || { echo "FATAL: EVA_Treasury council mismatch"; exit 1; }
+eq_addr "$(cast call $TREASURY "councilAt(uint256)(address)" 0 --rpc-url $RPC)" "$MULTISIG" || { echo "FATAL: EVA_Treasury council mismatch"; exit 1; }
 sleep 5
 
 # ===== IncidentRegistry =====
