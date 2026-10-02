@@ -28,23 +28,28 @@
 | FeeAdaptationEngine | 3 | PASS (fee math 350/400bp exact) | 0/0 | no args; low doc mismatch: dead-hub reverts instead of degrading (not blocking) |
 | EVA_EngineHub | 3 | PASS (5 regs, aggregation, negatives) | 0/0 | regs = DEFENSE_LEVEL, TWAP_FAST/SLOW_USD8, BUY/SELL_TAX_BP on 3 live engines |
 
-## DEFERRED (14) — reason documented, not in scripts
+## DEFERRED (2) — تنتظر عناوين/قرارات المؤسس
 
 | Contract | Blocked on |
 |---|---|
-| EVAFounderVesting | beneficiary + vesting schedule undecided |
-| EVA_BoostAuction | epochLen/k/multBps/minBid economic params undecided |
-| EVA_BoundedGovernance | needs governed-module interfaces (code change) |
-| EVA_CongestionExit | baseBps/k/capBps/window/minLock/maxLock undecided |
-| EVA_DangerScore | **coordinator override:** 12 risk-model weights = founder modeling decision (worker verdict was READY; snippet preserved in /tmp) |
-| EVA_FeeAdaptationV2 | needs `omega<=10000` enforced in code |
-| EVA_LoyaltyBadge | baseURI + tierMinimums undecided |
-| EVA_NFT | no collection concept (pre-existing) |
-| EVA_OracleBlend | 2 more verified Chainlink feeds (only ETH/USD on record) |
-| EVA_Splitter | payees/shares undecided |
-| EVA_ThreatMarket | depends on VerifyJury |
-| EVA_USDThresholds | priceFeed + confidenceSource |
-| EVA_VerifyJury | window/minVoters/maxVoters/whaleCapBps/reporterBps/minStake undecided |
+| EVA_OracleBlend | 2 more verified Chainlink feeds (only ETH/USD on record) + staleness_ |
+| EVA_USDThresholds | priceFeed + confidenceSource + registrar + names/targets |
+
+## FIXED 2026-10-02 (11) — أُصلحت وأُضيفت للسكريبتات (التفاصيل: deployments/ewa-params.md)
+
+| Contract | الإصلاح | Batch |
+|---|---|---|
+| EVA_FeeAdaptationV2 | فرض `omega<=10000` بالكود (خارج المقياس → محايد) | batch3 |
+| EVA_BoundedGovernance | `GovernedModule` مجرد أُضيف (IGovernedModule لها منفذ) + اختبار تكامل | batch1 |
+| EVA_DangerScore | تحقق شامل — الكود سليم؛ أوزان محايدة 100k×12 موثقة | batch3 |
+| EVA_NFT | `setBaseURI` (للمينتر) + افتراضي آمن فارغ | batch1 |
+| EVAFounderVesting | الجدول صريح عبر constructor (7 برامترات) + اختبارات | batch2 |
+| EVA_BoostAuction | قيم افتراضية من الاختبارات | batch2 |
+| EVA_CongestionExit | قيم افتراضية من الاختبارات | batch2 |
+| EVA_VerifyJury | قيم من الاختبارات؛ registry=IncidentRegistry | batch4 |
+| EVA_LoyaltyBadge | minter=المؤسس، tiers من الاختبارات، baseURI فارغ | batch2 |
+| EVA_Splitter | 100% للمؤسس (افتراضي صريح قابل للتغيير) | batch2 |
+| EVA_ThreatMarket | jury=VerifyJury (نفس الدفعة، ترتيب إلزامي) | batch4 |
 
 ## NEEDS-ADAPTER (12)
 
