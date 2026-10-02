@@ -63,7 +63,7 @@ echo "EVA_LockVault = $LOCKVAULT"
 save_addr LOCKVAULT $LOCKVAULT
 sleep 5
 # verify: stored token == EWA_CORE
-eq_addr "$(cast call $LOCKVAULT "EVA()" --rpc-url $RPC)" "$EWA_CORE" || { echo "FATAL: EVA_LockVault token mismatch"; exit 1; }
+eq_addr "$(cast call $LOCKVAULT "EVA()(address)" --rpc-url $RPC)" "$EWA_CORE" || { echo "FATAL: EVA_LockVault token mismatch"; exit 1; }
 sleep 5
 
 # ===== EVA_RewardDistributor =====
@@ -77,7 +77,7 @@ if [ -z "${REWARDIST:-}" ]; then echo "FATAL: EVA_RewardDistributor deploy faile
 echo "EVA_RewardDistributor = $REWARDIST"
 save_addr REWARDIST $REWARDIST
 sleep 5
-eq_addr "$(cast call $REWARDIST "REWARD()" --rpc-url $RPC)" "$EWA_CORE" || { echo "FATAL: EVA_RewardDistributor token mismatch"; exit 1; }
+eq_addr "$(cast call $REWARDIST "REWARD()(address)" --rpc-url $RPC)" "$EWA_CORE" || { echo "FATAL: EVA_RewardDistributor token mismatch"; exit 1; }
 sleep 5
 
 
