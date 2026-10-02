@@ -1,18 +1,14 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.34;
-
-// src/EVA_FounderVesting.sol
-
- // ^0.8.24: verified with 0.8.24 locally; Remix deploys with 0.8.34
+pragma solidity 0.8.34; // pinned: audited, tested and deployed with solc 0.8.34
 
 /*
  *  EVA Founder Vesting — "EVAFounderVesting"
  *  ============================================================
- *  Holds 2,500,000 EVA for the founder in TWO immutable tranches:
+ *  Holds founder EWA in TWO immutable tranches whose schedule is fixed
+ *  explicitly at construction:
  *
- *    Tranche A (long):  2,000,000 EVA — 1-year cliff, then linear to year 3.
- *    Tranche B (short):   500,000 EVA — linear over 1 year, NO cliff
- *                         (vests from day 0).
+ *    Tranche A: totalA_ — cliffA_ cliff, then linear to durationA_.
+ *    Tranche B: totalB_ — linear over durationB_, no cliff.
  *
  *  Release is permissionless — ANYONE can trigger it — but only the
  *  founder (immutable beneficiary) ever receives. No owner, no roles,
@@ -29,25 +25,51 @@ contract EVAFounderVesting {
     address public immutable BENEFICIARY;
     uint64 public immutable START;
 
-    // Tranche A: 2M, 1-year cliff, 3-year total.
-    uint64 public immutable CLIFF_A = 365 days;
-    uint64 public immutable DURATION_A = 3 * 365 days;
-    uint256 public immutable TOTAL_A = 2_000_000 * 1e18;
+    // Tranche A: amount, cliff, and total duration (all set at deploy).
+    uint64 public immutable CLIFF_A;
+    uint64 public immutable DURATION_A;
+    uint256 public immutable TOTAL_A;
 
-    // Tranche B: 500k, linear over 1 year, no cliff.
-    uint64 public immutable DURATION_B = 365 days;
-    uint256 public immutable TOTAL_B = 500_000 * 1e18;
+    // Tranche B: amount and duration (linear from day 0, no cliff).
+    uint64 public immutable DURATION_B;
+    uint256 public immutable TOTAL_B;
 
-    uint256 public constant TOTAL = 2_500_000 * 1e18;
+    uint256 public immutable TOTAL;
 
     uint256 public released;
 
     event VestingReleased(address indexed to, uint256 amount);
 
-    constructor(address eva_, address beneficiary_) {
+    /// @notice Deploys the vesting vault with an explicit schedule.
+    /// @param eva_ EWA_Core address. Must be non-zero. Uses only
+    ///        transfer/balanceOf, both supported by EWA_Core.
+    /// @param beneficiary_ Founder receiving released tokens. Must be non-zero.
+    /// @param totalA_ Tranche A total (wei). Must be > 0.
+    /// @param cliffA_ Tranche A cliff (seconds). Must satisfy cliffA_ <= durationA_.
+    /// @param durationA_ Tranche A total duration (seconds). Must be > 0.
+    /// @param totalB_ Tranche B total (wei). Must be > 0.
+    /// @param durationB_ Tranche B duration (seconds). Must be > 0.
+    constructor(
+        address eva_,
+        address beneficiary_,
+        uint256 totalA_,
+        uint64 cliffA_,
+        uint64 durationA_,
+        uint256 totalB_,
+        uint64 durationB_
+    ) {
         require(eva_ != address(0) && beneficiary_ != address(0), "zero address");
+        require(totalA_ > 0 && totalB_ > 0, "zero tranche amount");
+        require(durationA_ > 0 && durationB_ > 0, "zero tranche duration");
+        require(cliffA_ <= durationA_, "cliff exceeds duration");
         EVA = IEVA(eva_);
         BENEFICIARY = beneficiary_;
+        TOTAL_A = totalA_;
+        CLIFF_A = cliffA_;
+        DURATION_A = durationA_;
+        TOTAL_B = totalB_;
+        DURATION_B = durationB_;
+        TOTAL = totalA_ + totalB_;
         START = uint64(block.timestamp);
     }
 
@@ -87,4 +109,3 @@ contract EVAFounderVesting {
         emit VestingReleased(BENEFICIARY, amt);
     }
 }
-
