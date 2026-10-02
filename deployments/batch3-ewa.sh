@@ -75,7 +75,7 @@ echo "TWAPOracleEngine = $TWAP"
 save_addr TWAP $TWAP
 sleep 5
 # verify feed == ETHUSD (actual getter name from source)
-eq_addr "$(cast call $TWAP "FEED()" --rpc-url $RPC)" "0x71041dddad3595F9CEd3DcCFBe3D1F4b0a16Bb70" || { echo "FATAL: TWAPOracleEngine feed mismatch"; exit 1; }
+eq_addr "$(cast call $TWAP "FEED()(address)" --rpc-url $RPC)" "0x71041dddad3595F9CEd3DcCFBe3D1F4b0a16Bb70" || { echo "FATAL: TWAPOracleEngine feed mismatch"; exit 1; }
 sleep 5
 
 # ===== FeeAdaptationEngine =====
