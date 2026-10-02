@@ -1,0 +1,114 @@
+{
+ "network": "base",
+ "chainId": 8453,
+ "deployed": "2026-10-02",
+ "deployer": "0xE9B0CebeF9e93cAc7727A06D5ED5f8e3AE71e5F8",
+ "note": "SolidityScan gate waived by owner; Escrow=per-deal; SimpleToken=via factory; OracleBlend+USDThresholds postponed (need 2 more feeds)",
+ "contracts": [
+  {
+   "name": "EVA_Multisig",
+   "address": "0x9B66852aD70bB2A9F5c24B85121B4d92e735FcD3",
+   "tx": "0x4b58ffc0e03948f1145ecebbcad84fe630fc0ee3e2c82facb4431fb7d710b230",
+   "block": 52062300,
+   "config": "owners=[wallet] threshold=1"
+  },
+  {
+   "name": "EVA_BoundedGovernance",
+   "address": "0xA91beA308d3Af1C39198381Bc49138579b8eB5cB",
+   "tx": "0xd5d02da2553e33df2574bfbd76733eee0615602eff694cbbe705656dd797ef65",
+   "block": 52062302,
+   "config": "council=[wallet]"
+  },
+  {
+   "name": "EVA_KeeperScheduler",
+   "address": "0x278AeA29E5bDEDEB1Ecb6Ff019635260c3dEdC16",
+   "tx": "0xf8797af2b3e103a61dc561d3d03b9705e9d8bf17d5cfba0f455d3782debc703e",
+   "block": 52062303,
+   "config": "registrar=wallet cooldown=3600"
+  },
+  {
+   "name": "EVA_DangerScore",
+   "address": "0x3409accF2CA1E793D11EeF5D61bD33003691DAda",
+   "tx": "0xe7e2e9ae925d54a25919562586294a67f0e12bd9e36bfb007ade7ad26a3e78c7",
+   "block": 52062304,
+   "config": "hub=H2 weights=12x10000"
+  },
+  {
+   "name": "EVA_FeeAdaptationV2",
+   "address": "0x504c162Aa48C21122371246Cdfd0C48ab22F8082",
+   "tx": "0x841cb94954a0f58c94a21991f8dc4d75d1a826d36047d3c201bba3309101101f",
+   "block": 52062305,
+   "config": "tiers 1e6/1e8/1e10/1e11 maxAge=86400"
+  },
+  {
+   "name": "EVA_RewardDistributor",
+   "address": "0x4Fea207a3d52Ae883993a45E87883311827388Db",
+   "tx": "0x29fdddfac68ca4574c6c4f2d05e2fdb36eaa566dc3e8659846c24a4321871cc3",
+   "block": 52062307,
+   "config": "rewardToken=EVA epoch=30d"
+  },
+  {
+   "name": "EVA_Conditional",
+   "address": "0x05f52c742B6cd0f2b063A244014d265FDdD81Ca4",
+   "tx": "0x993da9b571805ec6385f8f4b6f29911ac295bbf71b59e163ceedfca6d57047b0",
+   "block": 52062308,
+   "config": "no ctor"
+  },
+  {
+   "name": "EVA_Stream",
+   "address": "0x3FC58Dd718ffbE60b7AD8d92c91B90B1b370959f",
+   "tx": "0x274988532d54d2df668717e95efef3b71044d7dd3e6647be4f6e18bd2984a6b6",
+   "block": 52062309,
+   "config": "no ctor"
+  },
+  {
+   "name": "EVA_TokenFactory",
+   "address": "0x830F2d58A5F4395A6d2464A878FBC45D8bA3aDda",
+   "tx": "0xe497258328c57b8989b45778c9f122b0c65aa3abfd5c4ca72edab470609b72dd",
+   "block": 52062311,
+   "config": "no ctor"
+  },
+  {
+   "name": "EVA_Splitter",
+   "address": "0xBa87A5F96D9363AC4A5c53178bfA2c11591c6B4A",
+   "tx": "0x7924d209867165bf46b0d51f9f2a76ffa7b2d694f83340788fea8ba2b6b7a692",
+   "block": 52062403,
+   "config": "payees=[wallet] shares=[100]"
+  },
+  {
+   "name": "EVA_NFT",
+   "address": "0xe76AE7Df69D6fc1343b17E5f0fB3dEb0f766A3D0",
+   "tx": "0x09d2832e522b90b6eb292cccc05f123ae9245fe09c96e3e25c9fa3ce4322ec01",
+   "block": 52062409,
+   "config": "baseURI='' minter=wallet"
+  },
+  {
+   "name": "EVA_Vesting",
+   "address": "0x699C3C8a59b28110BB27152D777B4e7b1CC11d76",
+   "tx": "0x8e369cf6bb6c75476f0113f38959b08cf2ab5efd3673b78771d1a438307063a1",
+   "block": 52062415,
+   "config": "no ctor"
+  },
+  {
+   "name": "EVA_Treasury",
+   "address": "0xf4F33F0E9Bde1F52Fb365b48b32A230cAe1CaF72",
+   "tx": "0x02645cdb4aa3de8f3b7df624691fa2a0b3ff80c5c2cfc3220bbdda93204a664d",
+   "block": 52062494,
+   "config": "council=[wallet]"
+  },
+  {
+   "name": "EVA_LoyaltyBadge",
+   "address": "0xCBFB07577508118864cBeF3f177C834fdc161e6E",
+   "tx": "0x35411ca1c350203abb5bfa567c03cd12b0330c5ba584d66d47b8d6fa8bd198d9",
+   "block": 52062505,
+   "config": "token=EVA minter=wallet tiers=1e21/1e22/1e23/1e24"
+  },
+  {
+   "name": "EVA_Subscriptions",
+   "address": "0xe31DF8fC121bdBEA96eD4FA48Ce10ce678b3dda6",
+   "tx": "0x0db572b5feab7bbc029cb8809232a97688f98ecfd32fe610278124e3714bec9e",
+   "block": 52062516,
+   "config": "no ctor"
+  }
+ ]
+}
