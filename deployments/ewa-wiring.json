@@ -16,11 +16,12 @@
     {
       "contract": "EVACore",
       "file": "EVA_Core.sol",
-      "status": "ready",
+      "status": "excluded",
       "constructorArgs": [
         "<founder_:address>",
         "<vesting_:address>"
-      ]
+      ],
+      "note": "\u0627\u0644\u0643\u0648\u0631 \u0627\u0644\u0642\u062f\u064a\u0645 \u0627\u0644\u0645\u064a\u062a (bug \u0627\u0644\u0642\u0627\u0637\u0639) - \u0644\u0627 \u064a\u064f\u0646\u0634\u0631 \u0623\u0628\u062f\u064b\u0627"
     },
     {
       "contract": "EVA_EduInherit",
@@ -42,11 +43,12 @@
     {
       "contract": "EVAFounderVesting",
       "file": "EVA_FounderVesting.sol",
-      "status": "ready",
+      "status": "deferred",
       "constructorArgs": [
         "$EWA_CORE",
         "<beneficiary_:address>"
-      ]
+      ],
+      "deferReason": "beneficiary + vesting schedule undecided"
     },
     {
       "contract": "EVA_LockVault",
@@ -59,10 +61,11 @@
     {
       "contract": "EWA_Core",
       "file": "EWA_Core.sol",
-      "status": "ready",
+      "status": "deployed",
       "constructorArgs": [
         "<maxSupply_:uint256>"
-      ]
+      ],
+      "note": "\u0645\u0646\u0634\u0648\u0631 \u0628\u0627\u0644\u0641\u0639\u0644 0x0201981D7BFE0E79DEACb0B5eae0F83022Cc18eB"
     },
     {
       "contract": "FeeAdaptationEngine",
@@ -79,18 +82,20 @@
     {
       "contract": "LiquidityDepthEngine",
       "file": "LiquidityDepthEngine.sol",
-      "status": "ready",
+      "status": "needs-adapter",
       "constructorArgs": [
         "$EWA_CORE"
-      ]
+      ],
+      "adapterReason": "calls CORE.lastGoodEthUSD8/curveReserveETH \u2014 absent on EWA_Core; poke() dead; needs rebinding"
     },
     {
       "contract": "ReserveSolvencyEngine",
       "file": "ReserveSolvencyEngine.sol",
-      "status": "ready",
+      "status": "needs-adapter",
       "constructorArgs": [
         "$EWA_CORE"
-      ]
+      ],
+      "adapterReason": "calls CORE.sold/spotPriceUSD8/lastGoodEthUSD8/curveReserveETH \u2014 absent on EWA_Core; fork-proven poke() reverts; needs rebinding"
     },
     {
       "contract": "TWAPOracleEngine",
@@ -103,10 +108,11 @@
     {
       "contract": "VolatilitySurfaceEngine",
       "file": "VolatilitySurfaceEngine.sol",
-      "status": "ready",
+      "status": "needs-adapter",
       "constructorArgs": [
         "$EWA_CORE"
-      ]
+      ],
+      "adapterReason": "calls CORE.spotPriceUSD8 \u2014 absent on EWA_Core; needs rebinding"
     },
     {
       "contract": "EVA_AdaptiveCurve",
@@ -139,22 +145,24 @@
     {
       "contract": "EVA_BoostAuction",
       "file": "suite/EVA_BoostAuction.sol",
-      "status": "ready",
+      "status": "deferred",
       "constructorArgs": [
         "$EWA_CORE",
         "<epochLen_:uint256>",
         "<k_:uint256>",
         "<multBps_:uint256>",
         "<minBid_:uint256>"
-      ]
+      ],
+      "deferReason": "epochLen/k/multBps/minBid economic params undecided"
     },
     {
       "contract": "EVA_BoundedGovernance",
       "file": "suite/EVA_BoundedGovernance.sol",
-      "status": "ready",
+      "status": "deferred",
       "constructorArgs": [
         "<council_:address[]>"
-      ]
+      ],
+      "deferReason": "needs governed-module interfaces (code change)"
     },
     {
       "contract": "EVA_Conditional",
@@ -165,7 +173,7 @@
     {
       "contract": "EVA_CongestionExit",
       "file": "suite/EVA_CongestionExit.sol",
-      "status": "ready",
+      "status": "deferred",
       "constructorArgs": [
         "$EWA_CORE",
         "<baseBps:uint256>",
@@ -174,16 +182,18 @@
         "<window:uint64>",
         "<minLock:uint64>",
         "<maxLock:uint64>"
-      ]
+      ],
+      "deferReason": "6 economic params (baseBps/k/capBps/window/minLock/maxLock) undecided"
     },
     {
       "contract": "EVA_DangerScore",
       "file": "suite/EVA_DangerScore.sol",
-      "status": "ready",
+      "status": "deferred",
       "constructorArgs": [
         "<hub_:address>",
         "<weights_:uint256[12]>"
-      ]
+      ],
+      "deferReason": "STRICT RULE: 12 risk-model weights are a founder modeling decision; equal-weight default would be a guess. Awaiting founder's weight model."
     },
     {
       "contract": "EVA_DelegationDecay",
@@ -229,14 +239,15 @@
     {
       "contract": "EVA_FeeAdaptationV2",
       "file": "suite/EVA_FeeAdaptationV2.sol",
-      "status": "ready",
+      "status": "deferred",
       "constructorArgs": [
         "<tierMicroUsd8:uint256>",
         "<tierLowUsd8:uint256>",
         "<tierMidUsd8:uint256>",
         "<tierHighUsd8:uint256>",
         "<signalMaxAge:uint256>"
-      ]
+      ],
+      "deferReason": "needs omega<=10000 enforced in code"
     },
     {
       "contract": "EVA_KeeperScheduler",
@@ -250,13 +261,14 @@
     {
       "contract": "EVA_LoyaltyBadge",
       "file": "suite/EVA_LoyaltyBadge.sol",
-      "status": "ready",
+      "status": "deferred",
       "constructorArgs": [
         "$EWA_CORE",
         "<minter_:address>",
         "<baseURI_:string>",
         "<tierMinimums_:uint256[4]>"
-      ]
+      ],
+      "deferReason": "baseURI + tierMinimums undecided"
     },
     {
       "contract": "EVA_MACIVote",
@@ -291,13 +303,14 @@
     {
       "contract": "EVA_OracleBlend",
       "file": "suite/EVA_OracleBlend.sol",
-      "status": "ready",
+      "status": "deferred",
       "constructorArgs": [
         "<feed1_:address>",
         "<feed2_:address>",
         "<feed3_:address>",
         "<staleness_:uint256>"
-      ]
+      ],
+      "deferReason": "needs 2 more verified Chainlink feeds (only ETH/USD verified)"
     },
     {
       "contract": "EVA_PrioritySlot",
@@ -380,7 +393,7 @@
     {
       "contract": "EVA_SortitionPanel",
       "file": "suite/EVA_SortitionPanel.sol",
-      "status": "ready",
+      "status": "deferred",
       "constructorArgs": [
         "<badge_:address>",
         "<vrf_:address>",
@@ -392,16 +405,18 @@
         "<delay_:uint64>",
         "<openFee_:uint256>",
         "<feeRecipient_:address>"
-      ]
+      ],
+      "deferReason": "needs VRF (vrf/keyHash/subId)"
     },
     {
       "contract": "EVA_Splitter",
       "file": "suite/EVA_Splitter.sol",
-      "status": "ready",
+      "status": "deferred",
       "constructorArgs": [
         "<payees_:address[]>",
         "<shares_:uint256[]>"
-      ]
+      ],
+      "deferReason": "payees/shares undecided"
     },
     {
       "contract": "EVA_StreakAttest",
@@ -436,12 +451,13 @@
     {
       "contract": "EVA_ThreatMarket",
       "file": "suite/EVA_ThreatMarket.sol",
-      "status": "ready",
+      "status": "deferred",
       "constructorArgs": [
         "$EWA_CORE",
         "<jury_:address>",
         "<juryStakeBp_:uint256>"
-      ]
+      ],
+      "deferReason": "depends on VerifyJury (deferred)"
     },
     {
       "contract": "EVA_TokenFactory",
@@ -460,7 +476,7 @@
     {
       "contract": "EVA_USDThresholds",
       "file": "suite/EVA_USDThresholds.sol",
-      "status": "ready",
+      "status": "deferred",
       "constructorArgs": [
         "<priceFeed_:IPriceFeed>",
         "<priceFeedDecimals_:uint8>",
@@ -469,12 +485,13 @@
         "<maxStaleAfter_:uint256>",
         "<names_:bytes32[]>",
         "<targetsUSD_:uint256[]>"
-      ]
+      ],
+      "deferReason": "needs priceFeed + confidenceSource"
     },
     {
       "contract": "EVA_VerifyJury",
       "file": "suite/EVA_VerifyJury.sol",
-      "status": "ready",
+      "status": "deferred",
       "constructorArgs": [
         "<registry:address>",
         "$EWA_CORE",
@@ -484,7 +501,8 @@
         "<whaleCapBps:uint256>",
         "<reporterBps:uint256>",
         "<minStake:uint256>"
-      ]
+      ],
+      "deferReason": "7 economic params (window/voters/whaleCap/reporterBps/minStake) undecided"
     },
     {
       "contract": "EVA_Vesting",
