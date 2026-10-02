@@ -43,12 +43,13 @@
     {
       "contract": "EVAFounderVesting",
       "file": "EVA_FounderVesting.sol",
-      "status": "deferred",
+      "status": "ready",
       "constructorArgs": [
         "$EWA_CORE",
         "<beneficiary_:address>"
       ],
-      "deferReason": "beneficiary + vesting schedule undecided"
+      "deferReason": "beneficiary + vesting schedule undecided",
+      "note": "FIXED 2026-10-02: schedule now explicit constructor params (was hardcoded); batch2 (schedule values = documented EVA example, founder confirms)"
     },
     {
       "contract": "EVA_LockVault",
@@ -145,7 +146,7 @@
     {
       "contract": "EVA_BoostAuction",
       "file": "suite/EVA_BoostAuction.sol",
-      "status": "deferred",
+      "status": "ready",
       "constructorArgs": [
         "$EWA_CORE",
         "<epochLen_:uint256>",
@@ -153,16 +154,18 @@
         "<multBps_:uint256>",
         "<minBid_:uint256>"
       ],
-      "deferReason": "epochLen/k/multBps/minBid economic params undecided"
+      "deferReason": "epochLen/k/multBps/minBid economic params undecided",
+      "note": "READY 2026-10-02: defaults from tests (86400/3/15000/1e18); batch2"
     },
     {
       "contract": "EVA_BoundedGovernance",
       "file": "suite/EVA_BoundedGovernance.sol",
-      "status": "deferred",
+      "status": "ready",
       "constructorArgs": [
         "<council_:address[]>"
       ],
-      "deferReason": "needs governed-module interfaces (code change)"
+      "deferReason": "needs governed-module interfaces (code change)",
+      "note": "FIXED 2026-10-02: GovernedModule abstract base added (IGovernedModule now has a real implementer pattern); batch1"
     },
     {
       "contract": "EVA_Conditional",
@@ -173,7 +176,7 @@
     {
       "contract": "EVA_CongestionExit",
       "file": "suite/EVA_CongestionExit.sol",
-      "status": "deferred",
+      "status": "ready",
       "constructorArgs": [
         "$EWA_CORE",
         "<baseBps:uint256>",
@@ -183,17 +186,19 @@
         "<minLock:uint64>",
         "<maxLock:uint64>"
       ],
-      "deferReason": "6 economic params (baseBps/k/capBps/window/minLock/maxLock) undecided"
+      "deferReason": "6 economic params (baseBps/k/capBps/window/minLock/maxLock) undecided",
+      "note": "READY 2026-10-02: defaults from tests (200/4e18/2500/7d/30d/365d); batch2"
     },
     {
       "contract": "EVA_DangerScore",
       "file": "suite/EVA_DangerScore.sol",
-      "status": "deferred",
+      "status": "ready",
       "constructorArgs": [
         "<hub_:address>",
         "<weights_:uint256[12]>"
       ],
-      "deferReason": "STRICT RULE: 12 risk-model weights are a founder modeling decision; equal-weight default would be a guess. Awaiting founder's weight model."
+      "deferReason": "STRICT RULE: 12 risk-model weights are a founder modeling decision; equal-weight default would be a guess. Awaiting founder's weight model.",
+      "note": "READY 2026-10-02: code verified sound (no changes); neutral weights 100k x12 documented placeholder; batch3"
     },
     {
       "contract": "EVA_DelegationDecay",
@@ -239,7 +244,7 @@
     {
       "contract": "EVA_FeeAdaptationV2",
       "file": "suite/EVA_FeeAdaptationV2.sol",
-      "status": "deferred",
+      "status": "ready",
       "constructorArgs": [
         "<tierMicroUsd8:uint256>",
         "<tierLowUsd8:uint256>",
@@ -247,7 +252,8 @@
         "<tierHighUsd8:uint256>",
         "<signalMaxAge:uint256>"
       ],
-      "deferReason": "needs omega<=10000 enforced in code"
+      "deferReason": "needs omega<=10000 enforced in code",
+      "note": "FIXED 2026-10-02: omega<=10000 enforced in code (_omegaFactor degrades out-of-scale to neutral); batch3"
     },
     {
       "contract": "EVA_KeeperScheduler",
@@ -261,14 +267,15 @@
     {
       "contract": "EVA_LoyaltyBadge",
       "file": "suite/EVA_LoyaltyBadge.sol",
-      "status": "deferred",
+      "status": "ready",
       "constructorArgs": [
         "$EWA_CORE",
         "<minter_:address>",
         "<baseURI_:string>",
         "<tierMinimums_:uint256[4]>"
       ],
-      "deferReason": "baseURI + tierMinimums undecided"
+      "deferReason": "baseURI + tierMinimums undecided",
+      "note": "READY 2026-10-02: minter=founder, tiers from tests, baseURI empty (founder branding); batch2"
     },
     {
       "contract": "EVA_MACIVote",
@@ -293,12 +300,12 @@
     {
       "contract": "EVA_NFT",
       "file": "suite/EVA_NFT.sol",
-      "status": "deferred",
+      "status": "ready",
       "constructorArgs": [
         "<baseURI_:string>",
         "<minter_:address>"
       ],
-      "note": "\u0628\u0644\u0627 \u0645\u0641\u0647\u0648\u0645 \u0645\u062c\u0645\u0648\u0639\u0629 - \u064a\u0624\u062c\u0644 \u062d\u062a\u0649 baseURI \u0648\u0627\u0636\u062d"
+      "note": "FIXED 2026-10-02: setBaseURI (minter-gated) added, safe empty default; batch1"
     },
     {
       "contract": "EVA_OracleBlend",
@@ -412,12 +419,13 @@
     {
       "contract": "EVA_Splitter",
       "file": "suite/EVA_Splitter.sol",
-      "status": "deferred",
+      "status": "ready",
       "constructorArgs": [
         "<payees_:address[]>",
         "<shares_:uint256[]>"
       ],
-      "deferReason": "payees/shares undecided"
+      "deferReason": "payees/shares undecided",
+      "note": "READY 2026-10-02: default 100% founder (explicit, changeable); batch2"
     },
     {
       "contract": "EVA_StreakAttest",
@@ -452,13 +460,14 @@
     {
       "contract": "EVA_ThreatMarket",
       "file": "suite/EVA_ThreatMarket.sol",
-      "status": "deferred",
+      "status": "ready",
       "constructorArgs": [
         "$EWA_CORE",
         "<jury_:address>",
         "<juryStakeBp_:uint256>"
       ],
-      "deferReason": "depends on VerifyJury (deferred)"
+      "deferReason": "depends on VerifyJury (deferred)",
+      "note": "READY 2026-10-02: jury wired to batch4 VerifyJury (order enforced); batch4"
     },
     {
       "contract": "EVA_TokenFactory",
@@ -492,7 +501,7 @@
     {
       "contract": "EVA_VerifyJury",
       "file": "suite/EVA_VerifyJury.sol",
-      "status": "deferred",
+      "status": "ready",
       "constructorArgs": [
         "<registry:address>",
         "$EWA_CORE",
@@ -503,7 +512,8 @@
         "<reporterBps:uint256>",
         "<minStake:uint256>"
       ],
-      "deferReason": "7 economic params (window/voters/whaleCap/reporterBps/minStake) undecided"
+      "deferReason": "7 economic params (window/voters/whaleCap/reporterBps/minStake) undecided",
+      "note": "READY 2026-10-02: params from tests, registry=IncidentRegistry(batch1); batch4"
     },
     {
       "contract": "EVA_Vesting",
