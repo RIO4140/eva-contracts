@@ -1,0 +1,493 @@
+{
+  "network": "base-mainnet",
+  "chainId": 8453,
+  "EWA_Core": "0x0201981D7BFE0E79DEACb0B5eae0F83022Cc18eB",
+  "deployer": "0xE9B0CebeF9e93cAc7727A06D5ED5f8e3AE71e5F8",
+  "note": "NO MIGRATION anywhere by explicit order. $EWA_CORE = 0x0201981D7BFE0E79DEACb0B5eae0F83022Cc18eB",
+  "contracts": [
+    {
+      "contract": "AdaptiveDefense",
+      "file": "AdaptiveDefense.sol",
+      "status": "ready",
+      "constructorArgs": [
+        "<registry_:address>"
+      ]
+    },
+    {
+      "contract": "EVACore",
+      "file": "EVA_Core.sol",
+      "status": "ready",
+      "constructorArgs": [
+        "<founder_:address>",
+        "<vesting_:address>"
+      ]
+    },
+    {
+      "contract": "EVA_EduInherit",
+      "file": "EVA_EduInherit.sol",
+      "status": "excluded",
+      "constructorArgs": [
+        "$EWA_CORE",
+        "<charity_:address>"
+      ]
+    },
+    {
+      "contract": "EVA_EngineHub",
+      "file": "EVA_EngineHub.sol",
+      "status": "ready",
+      "constructorArgs": [
+        "<regs:Registration[]>"
+      ]
+    },
+    {
+      "contract": "EVAFounderVesting",
+      "file": "EVA_FounderVesting.sol",
+      "status": "ready",
+      "constructorArgs": [
+        "$EWA_CORE",
+        "<beneficiary_:address>"
+      ]
+    },
+    {
+      "contract": "EVA_LockVault",
+      "file": "EVA_LockVault.sol",
+      "status": "ready",
+      "constructorArgs": [
+        "$EWA_CORE"
+      ]
+    },
+    {
+      "contract": "EWA_Core",
+      "file": "EWA_Core.sol",
+      "status": "ready",
+      "constructorArgs": [
+        "<maxSupply_:uint256>"
+      ]
+    },
+    {
+      "contract": "FeeAdaptationEngine",
+      "file": "FeeAdaptationEngine.sol",
+      "status": "ready",
+      "constructorArgs": []
+    },
+    {
+      "contract": "IncidentRegistry",
+      "file": "IncidentRegistry.sol",
+      "status": "ready",
+      "constructorArgs": []
+    },
+    {
+      "contract": "LiquidityDepthEngine",
+      "file": "LiquidityDepthEngine.sol",
+      "status": "ready",
+      "constructorArgs": [
+        "$EWA_CORE"
+      ]
+    },
+    {
+      "contract": "ReserveSolvencyEngine",
+      "file": "ReserveSolvencyEngine.sol",
+      "status": "ready",
+      "constructorArgs": [
+        "$EWA_CORE"
+      ]
+    },
+    {
+      "contract": "TWAPOracleEngine",
+      "file": "TWAPOracleEngine.sol",
+      "status": "ready",
+      "constructorArgs": [
+        "<feed_:address>"
+      ]
+    },
+    {
+      "contract": "VolatilitySurfaceEngine",
+      "file": "VolatilitySurfaceEngine.sol",
+      "status": "ready",
+      "constructorArgs": [
+        "$EWA_CORE"
+      ]
+    },
+    {
+      "contract": "EVA_AdaptiveCurve",
+      "file": "suite/EVA_AdaptiveCurve.sol",
+      "status": "needs-adapter",
+      "constructorArgs": [
+        "$EWA_CORE",
+        "<baseSellBp_:uint256>",
+        "<baseBuyBp_:uint256>",
+        "<flowKBp_:uint256>",
+        "<maxDampenBp_:uint256>",
+        "<maxTradeBp_:uint256>",
+        "<keeperFee_:uint256>",
+        "<evaTarget_:uint256>",
+        "<ethTarget_:uint256>"
+      ]
+    },
+    {
+      "contract": "EVA_BondedDepth",
+      "file": "suite/EVA_BondedDepth.sol",
+      "status": "needs-adapter",
+      "constructorArgs": [
+        "$EWA_CORE",
+        "$EWA_CORE",
+        "<stakerVault_:address>",
+        "<treasury_:address>",
+        "<rewardPerEva_:uint256>"
+      ]
+    },
+    {
+      "contract": "EVA_BoostAuction",
+      "file": "suite/EVA_BoostAuction.sol",
+      "status": "ready",
+      "constructorArgs": [
+        "$EWA_CORE",
+        "<epochLen_:uint256>",
+        "<k_:uint256>",
+        "<multBps_:uint256>",
+        "<minBid_:uint256>"
+      ]
+    },
+    {
+      "contract": "EVA_BoundedGovernance",
+      "file": "suite/EVA_BoundedGovernance.sol",
+      "status": "ready",
+      "constructorArgs": [
+        "<council_:address[]>"
+      ]
+    },
+    {
+      "contract": "EVA_Conditional",
+      "file": "suite/EVA_Conditional.sol",
+      "status": "ready",
+      "constructorArgs": []
+    },
+    {
+      "contract": "EVA_CongestionExit",
+      "file": "suite/EVA_CongestionExit.sol",
+      "status": "ready",
+      "constructorArgs": [
+        "$EWA_CORE",
+        "<baseBps:uint256>",
+        "<k:uint256>",
+        "<capBps:uint256>",
+        "<window:uint64>",
+        "<minLock:uint64>",
+        "<maxLock:uint64>"
+      ]
+    },
+    {
+      "contract": "EVA_DangerScore",
+      "file": "suite/EVA_DangerScore.sol",
+      "status": "ready",
+      "constructorArgs": [
+        "<hub_:address>",
+        "<weights_:uint256[12]>"
+      ]
+    },
+    {
+      "contract": "EVA_DelegationDecay",
+      "file": "suite/EVA_DelegationDecay.sol",
+      "status": "needs-adapter",
+      "constructorArgs": [
+        "$EWA_CORE",
+        "$EWA_CORE",
+        "<missFloor:uint8>"
+      ]
+    },
+    {
+      "contract": "EVA_EMADampener",
+      "file": "suite/EVA_EMADampener.sol",
+      "status": "needs-adapter",
+      "constructorArgs": [
+        "$EWA_CORE",
+        "<alphaBps_:uint256>",
+        "<maxMoveBp_:uint256>",
+        "<spreadBp_:uint256>",
+        "<probeEth_:uint256>",
+        "<maxTradeEva_:uint256>",
+        "<maxTradeEth_:uint256>",
+        "<rebalanceBandBp_:uint256>",
+        "<keeperFee_:uint256>",
+        "<seedEmaEvaPerEth_:uint256>"
+      ]
+    },
+    {
+      "contract": "EVA_Escrow",
+      "file": "suite/EVA_Escrow.sol",
+      "status": "ready",
+      "constructorArgs": [
+        "$EWA_CORE",
+        "<buyer_:address>",
+        "<seller_:address>",
+        "<arbiter_:address>",
+        "<amount_:uint256>",
+        "<deadline_:uint256>"
+      ]
+    },
+    {
+      "contract": "EVA_FeeAdaptationV2",
+      "file": "suite/EVA_FeeAdaptationV2.sol",
+      "status": "ready",
+      "constructorArgs": [
+        "<tierMicroUsd8:uint256>",
+        "<tierLowUsd8:uint256>",
+        "<tierMidUsd8:uint256>",
+        "<tierHighUsd8:uint256>",
+        "<signalMaxAge:uint256>"
+      ]
+    },
+    {
+      "contract": "EVA_KeeperScheduler",
+      "file": "suite/EVA_KeeperScheduler.sol",
+      "status": "ready",
+      "constructorArgs": [
+        "<registrar:address>",
+        "<masterRunCooldownSeconds:uint256>"
+      ]
+    },
+    {
+      "contract": "EVA_LoyaltyBadge",
+      "file": "suite/EVA_LoyaltyBadge.sol",
+      "status": "ready",
+      "constructorArgs": [
+        "$EWA_CORE",
+        "<minter_:address>",
+        "<baseURI_:string>",
+        "<tierMinimums_:uint256[4]>"
+      ]
+    },
+    {
+      "contract": "EVA_MACIVote",
+      "file": "suite/EVA_MACIVote.sol",
+      "status": "needs-adapter",
+      "constructorArgs": [
+        "$EWA_CORE",
+        "<verifier_:address>",
+        "<yesIdx_:uint256>",
+        "<noIdx_:uint256>"
+      ]
+    },
+    {
+      "contract": "EVA_Multisig",
+      "file": "suite/EVA_Multisig.sol",
+      "status": "ready",
+      "constructorArgs": [
+        "<owners_:address[]>",
+        "<threshold_:uint256>"
+      ]
+    },
+    {
+      "contract": "EVA_NFT",
+      "file": "suite/EVA_NFT.sol",
+      "status": "ready",
+      "constructorArgs": [
+        "<baseURI_:string>",
+        "<minter_:address>"
+      ]
+    },
+    {
+      "contract": "EVA_OracleBlend",
+      "file": "suite/EVA_OracleBlend.sol",
+      "status": "ready",
+      "constructorArgs": [
+        "<feed1_:address>",
+        "<feed2_:address>",
+        "<feed3_:address>",
+        "<staleness_:uint256>"
+      ]
+    },
+    {
+      "contract": "EVA_PrioritySlot",
+      "file": "suite/EVA_PrioritySlot.sol",
+      "status": "needs-adapter",
+      "constructorArgs": [
+        "$EWA_CORE",
+        "$EWA_CORE",
+        "<stakerVault_:address>",
+        "<treasury_:address>"
+      ]
+    },
+    {
+      "contract": "EVA_ReopenAuction",
+      "file": "suite/EVA_ReopenAuction.sol",
+      "status": "excluded",
+      "constructorArgs": [
+        "$EWA_CORE",
+        "$EWA_CORE",
+        "<maxIntents:uint8>",
+        "<clearBandBps:uint256>",
+        "<settleSlippageBps:uint256>",
+        "<rescueDelay:uint256>",
+        "<minBuyEth:uint256>",
+        "<minSellEva:uint256>",
+        "<maxPerAddress:uint256>"
+      ]
+    },
+    {
+      "contract": "EVA_ResilienceCredits",
+      "file": "suite/EVA_ResilienceCredits.sol",
+      "status": "excluded",
+      "constructorArgs": [
+        "$EWA_CORE",
+        "<claimDelay:uint64>",
+        "<creditRate:uint256>",
+        "<halflife:uint256>",
+        "<tiltDivisor:uint256>",
+        "<tiltCap:uint256>",
+        "<services:address[]>"
+      ]
+    },
+    {
+      "contract": "EVA_ResponsePlaybooks",
+      "file": "suite/EVA_ResponsePlaybooks.sol",
+      "status": "needs-adapter",
+      "constructorArgs": [
+        "$EWA_CORE",
+        "<jury_:address>",
+        "<defense_:address>",
+        "<params_:uint8[]>",
+        "<newValues_:uint256[]>",
+        "<minLevels_:uint8[]>",
+        "<cooldowns_:uint64[]>",
+        "<descriptions_:string[]>"
+      ]
+    },
+    {
+      "contract": "EVA_RewardDistributor",
+      "file": "suite/EVA_RewardDistributor.sol",
+      "status": "ready",
+      "constructorArgs": [
+        "$EWA_CORE",
+        "<epochLength_:uint256>"
+      ]
+    },
+    {
+      "contract": "EVA_SimpleToken",
+      "file": "suite/EVA_SimpleToken.sol",
+      "status": "ready",
+      "constructorArgs": [
+        "<name_:string>",
+        "<symbol_:string>",
+        "<decimals_:uint8>",
+        "<supply_:uint256>",
+        "<creator_:address>"
+      ]
+    },
+    {
+      "contract": "EVA_SortitionPanel",
+      "file": "suite/EVA_SortitionPanel.sol",
+      "status": "ready",
+      "constructorArgs": [
+        "<badge_:address>",
+        "<vrf_:address>",
+        "<keyHash_:bytes32>",
+        "<subId_:uint64>",
+        "<n_:uint256>",
+        "<minTier_:uint8>",
+        "<reviewWindow_:uint64>",
+        "<delay_:uint64>",
+        "<openFee_:uint256>",
+        "<feeRecipient_:address>"
+      ]
+    },
+    {
+      "contract": "EVA_Splitter",
+      "file": "suite/EVA_Splitter.sol",
+      "status": "ready",
+      "constructorArgs": [
+        "<payees_:address[]>",
+        "<shares_:uint256[]>"
+      ]
+    },
+    {
+      "contract": "EVA_StreakAttest",
+      "file": "suite/EVA_StreakAttest.sol",
+      "status": "needs-adapter",
+      "constructorArgs": [
+        "$EWA_CORE",
+        "<eas_:address>",
+        "<schema_:bytes32>"
+      ]
+    },
+    {
+      "contract": "EVA_Stream",
+      "file": "suite/EVA_Stream.sol",
+      "status": "ready",
+      "constructorArgs": []
+    },
+    {
+      "contract": "EVA_Subscriptions",
+      "file": "suite/EVA_Subscriptions.sol",
+      "status": "ready",
+      "constructorArgs": []
+    },
+    {
+      "contract": "EVA_TenureVote",
+      "file": "suite/EVA_TenureVote.sol",
+      "status": "needs-adapter",
+      "constructorArgs": [
+        "$EWA_CORE"
+      ]
+    },
+    {
+      "contract": "EVA_ThreatMarket",
+      "file": "suite/EVA_ThreatMarket.sol",
+      "status": "ready",
+      "constructorArgs": [
+        "$EWA_CORE",
+        "<jury_:address>",
+        "<juryStakeBp_:uint256>"
+      ]
+    },
+    {
+      "contract": "EVA_TokenFactory",
+      "file": "suite/EVA_TokenFactory.sol",
+      "status": "ready",
+      "constructorArgs": []
+    },
+    {
+      "contract": "EVA_Treasury",
+      "file": "suite/EVA_Treasury.sol",
+      "status": "ready",
+      "constructorArgs": [
+        "<council_:address[]>"
+      ]
+    },
+    {
+      "contract": "EVA_USDThresholds",
+      "file": "suite/EVA_USDThresholds.sol",
+      "status": "ready",
+      "constructorArgs": [
+        "<priceFeed_:IPriceFeed>",
+        "<priceFeedDecimals_:uint8>",
+        "<confidenceSource_:IConfidenceFeed>",
+        "<registrar_:address>",
+        "<maxStaleAfter_:uint256>",
+        "<names_:bytes32[]>",
+        "<targetsUSD_:uint256[]>"
+      ]
+    },
+    {
+      "contract": "EVA_VerifyJury",
+      "file": "suite/EVA_VerifyJury.sol",
+      "status": "ready",
+      "constructorArgs": [
+        "<registry:address>",
+        "$EWA_CORE",
+        "<window:uint64>",
+        "<minVoters:uint256>",
+        "<maxVoters:uint256>",
+        "<whaleCapBps:uint256>",
+        "<reporterBps:uint256>",
+        "<minStake:uint256>"
+      ]
+    },
+    {
+      "contract": "EVA_Vesting",
+      "file": "suite/EVA_Vesting.sol",
+      "status": "ready",
+      "constructorArgs": []
+    }
+  ]
+}
